@@ -24,13 +24,7 @@ server.timeout = FIVE_MINUTES;
 server.headersTimeout = FIVE_MINUTES + 5000;
 
 // Initialize Socket.io
-const io = new Server(server, {
-    cors: {
-        origin: "http://localhost:5173",
-        methods: ["GET", "POST"],
-        credentials: true
-    }
-});
+const io = new Server(server);
 
 // Setup Socket.io event handlers
 setupSocket(io);
@@ -39,12 +33,7 @@ setupSocket(io);
 app.set('io', io);
 
 // Configure CORS
-app.use(cors({
-    origin: "http://localhost:5173",
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-}));
+app.use(cors());
 
 // Increase payload size limit
 app.use(express.json({ limit: '50mb' }));
