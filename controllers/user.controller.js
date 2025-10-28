@@ -292,7 +292,6 @@ const unfollowUser = async (req, res) => {
 
         res.json({ success: true, message: 'User unfollowed successfully' });
     } catch (error) {
-        console.error('💥 [USER] Unfollow error:', error);
         res.status(500).json({ success: false, message: 'Server error' });
     }
 };
@@ -321,7 +320,6 @@ const getUserById = async (req, res) => {
             }
         });
     } catch (error) {
-        console.error('💥 [USER] Get user error:', error);
         res.status(500).json({ success: false, message: 'Server error' });
     }
 };
@@ -356,7 +354,6 @@ const updateUserProfile = async (req, res) => {
             user: updatedUser
         });
     } catch (error) {
-        console.error('💥 [USER] Update profile error:', error);
         res.status(500).json({ success: false, message: 'Server error' });
     }
 };

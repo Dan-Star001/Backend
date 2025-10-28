@@ -89,7 +89,6 @@ const setupSocket = (io) => {
                         });
                 })
                 .catch(error => {
-                    console.error('💥 [SOCKET] Send message error:', error);
                     socket.emit('error', { message: 'Failed to send message' });
                 });
         });
@@ -114,7 +113,6 @@ const setupSocket = (io) => {
                 });
             })
             .catch(error => {
-                console.error('💥 [SOCKET] Message read error:', error);
             });
         });
 

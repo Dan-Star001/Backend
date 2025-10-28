@@ -28,7 +28,6 @@ const authMiddleware = async (req, res, next) => {
         try {
             decoded = jwt.verify(token, process.env.JWT_SECRET);
         } catch (jwtError) {
-            console.error('❌ JWT Verification failed:', jwtError.message);
             return res.status(401).json({ 
                 success: false, 
                 message: 'Invalid or expired token' 
@@ -50,7 +49,6 @@ const authMiddleware = async (req, res, next) => {
         try {
             user = await User.findById(userId).select('-password');
         } catch (dbError) {
-            console.error('❌ Database error:', dbError.message);
             return res.status(500).json({ 
                 success: false, 
                 message: 'Database error during authentication',
@@ -71,9 +69,7 @@ const authMiddleware = async (req, res, next) => {
         next();
 
     } catch (error) {
-        console.error('💥 AUTH MIDDLEWARE ERROR:');
         console.error('Message:', error.message);
-        console.error('Stack:', error.stack);
         
         return res.status(500).json({ 
             success: false, 
